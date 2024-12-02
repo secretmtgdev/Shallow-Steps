@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1m2o476w1y17"]
+
+[ext_resource type="Script" path="res://scripts/worlds/world_1.gd" id="1_g4l0d"]
+[ext_resource type="PackedScene" uid="uid://0cfic8n36j0x" path="res://scenes/characters/player.tscn" id="1_pk70t"]
+[ext_resource type="PackedScene" uid="uid://b7spii7kjyjsb" path="res://scenes/objects/chest.tscn" id="3_2th3q"]
+
+[node name="World1" type="Node2D"]
+script = ExtResource("1_g4l0d")
+
+[node name="Shader" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="ObjectsContainer" type="Node2D" parent="."]
+
+[node name="Chest" parent="ObjectsContainer" instance=ExtResource("3_2th3q")]
+position = Vector2(392, 184)
+
+[node name="Visible" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="PlayerContainer" type="Node2D" parent="Visible"]
+
+[node name="Player" parent="Visible/PlayerContainer" instance=ExtResource("1_pk70t")]
+
+[node name="PlayerStartingPoint" type="Marker2D" parent="Visible/PlayerContainer"]
+position = Vector2(248, 248)
+
+[node name="Boundary" type="StaticBody2D" parent="."]
+
+[node name="BoundaryPolygon" type="CollisionPolygon2D" parent="Boundary"]
+polygon = PackedVector2Array(0, 272, 480, 272, 480, 0, 0, 0, 0, -8, 488, -8, 488, 280, -8, 280, -8, -8, 0, -8)

@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://xfekjehipemn"]
+
+[ext_resource type="Script" path="res://scripts/footstep.gd" id="1_r74yr"]
+[ext_resource type="Texture2D" uid="uid://dr5rxtg1co6t3" path="res://art/player/footstep.png" id="2_gdfom"]
+[ext_resource type="Texture2D" uid="uid://kr0k6x7y8liy" path="res://art/player/godot_default_pointlight.webp" id="3_8s4a0"]
+
+[sub_resource type="Animation" id="Animation_t1tm3"]
+resource_name = "Fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ew31f"]
+resource_name = "Pulsate"
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ijrxv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ukbhh"]
+_data = {
+"Fade": SubResource("Animation_t1tm3"),
+"Pulsate": SubResource("Animation_ew31f"),
+"RESET": SubResource("Animation_ijrxv")
+}
+
+[node name="Footstep" type="Node2D"]
+script = ExtResource("1_r74yr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
+texture_filter = 1
+position = Vector2(0, 11)
+texture = ExtResource("2_gdfom")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+range_z_min = -32
+range_z_max = 32
+texture = ExtResource("3_8s4a0")
+texture_scale = 0.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ukbhh")
+}
+
+[node name="DimTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="DimTimer" to="." method="_on_dim_timer_timeout"]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://0cfic8n36j0x"]
+
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_innnw"]
+[ext_resource type="Texture2D" uid="uid://b5na1gkp6dbvk" path="res://art/player/player.png" id="2_c7e15"]
+[ext_resource type="PackedScene" uid="uid://xfekjehipemn" path="res://scenes/characters/footstep.tscn" id="3_w77e4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g5prt"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_innnw")
+
+[node name="Image" type="Sprite2D" parent="."]
+visibility_layer = 4
+texture_filter = 1
+texture = ExtResource("2_c7e15")
+
+[node name="PreviousStep" type="Marker2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g5prt")
+
+[node name="Footstep" parent="." instance=ExtResource("3_w77e4")]
+under_player = true

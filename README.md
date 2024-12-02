@@ -1,0 +1,24 @@
+# Shallow Steps
+## Description
+Shallow Steps is a game where the player has to find all the clues in a room in order to advance to the next one. But beware, time is of the essence!
+
+## Todo
+- Create a start menu (Game entrypoint)
+	- Button to start a new game
+	- Button to load a game
+- Create a new game menu
+	- Button to choose the difficulty
+- Create a pause menu
+	- Button to restart the level
+	- Button to restart the game
+	- Button to change the difficulty
+	- Button to exit the menu
+- Add items to the chests
+	- Paper notes
+	- Medallions
+- Add other items to interact with
+	- Table
+	- Chair
+	- Desk
+	- Drawer
+	
