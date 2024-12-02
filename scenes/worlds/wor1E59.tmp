@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1m2o476w1y17"]
+[gd_scene load_steps=5 format=3 uid="uid://c1m2o476w1y17"]
 
 [ext_resource type="Script" path="res://scripts/worlds/world_1.gd" id="1_g4l0d"]
 [ext_resource type="PackedScene" uid="uid://0cfic8n36j0x" path="res://scenes/characters/player.tscn" id="1_pk70t"]
 [ext_resource type="PackedScene" uid="uid://b7spii7kjyjsb" path="res://scenes/objects/chest.tscn" id="3_2th3q"]
-[ext_resource type="PackedScene" uid="uid://bfobfvwmdrosf" path="res://scenes/bars/health_bar.tscn" id="4_bwsyr"]
 [ext_resource type="PackedScene" uid="uid://dl28pdu2nrnvx" path="res://scenes/bars/energy_bar.tscn" id="4_e40ap"]
 
 [node name="World1" type="Node2D"]
@@ -19,23 +18,16 @@ position = Vector2(392, 184)
 
 [node name="Visible" type="CanvasLayer" parent="."]
 
-[node name="EnergyBar" parent="Visible" instance=ExtResource("4_e40ap")]
+[node name="PlayerContainer" type="Node2D" parent="Visible"]
+
+[node name="EnergyBar" parent="Visible/PlayerContainer" instance=ExtResource("4_e40ap")]
 offset_left = 8.0
 offset_top = 248.0
 offset_right = 72.0
 offset_bottom = 258.0
 
-[node name="HealthBar" parent="Visible" instance=ExtResource("4_bwsyr")]
-offset_left = 8.0
-offset_top = 240.0
-offset_right = 72.0
-offset_bottom = 250.0
-
-[node name="PlayerContainer" type="Node2D" parent="Visible"]
-
-[node name="Player" parent="Visible/PlayerContainer" node_paths=PackedStringArray("energy_bar", "health_bar") instance=ExtResource("1_pk70t")]
-energy_bar = NodePath("../../EnergyBar")
-health_bar = NodePath("../../HealthBar")
+[node name="Player" parent="Visible/PlayerContainer" node_paths=PackedStringArray("energy_bar") instance=ExtResource("1_pk70t")]
+energy_bar = NodePath("../EnergyBar")
 
 [node name="PlayerStartingPoint" type="Marker2D" parent="Visible/PlayerContainer"]
 position = Vector2(256, 128)

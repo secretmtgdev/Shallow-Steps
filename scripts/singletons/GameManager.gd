@@ -17,8 +17,23 @@ var DRAIN_BY_DIFFICULTY = {
 	GameDifficulty.HARD: 0.1
 }
 
+func _ready() -> void:
+	SignalManager.game_over.connect(func(): get_tree().paused = true)
+
+func set_difficulty(newDifficulty: GameDifficulty) -> void:
+	CUR_DIFFICULTY = newDifficulty
+
 func get_drain_rate() -> float:
 	return DRAIN_BY_DIFFICULTY[CUR_DIFFICULTY]
 	
-func get_energy() -> float:
+func get_energy_percentage() -> float:
 	return ENERGY / 100.0
+	
+func get_energy() -> float:
+	return ENERGY
+
+func set_energy(energyLevel: float) -> void:
+	ENERGY = energyLevel
+	
+func decrease_energy() -> void:
+	ENERGY -= get_drain_rate()

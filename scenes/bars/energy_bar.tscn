@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl28pdu2nrnvx"]
+
+[ext_resource type="Texture2D" uid="uid://drpg58yt5ooxg" path="res://art/bars/healthbarUnder.png" id="1_3w13x"]
+[ext_resource type="Texture2D" uid="uid://bqcob6b10x2my" path="res://art/bars/lightBarProgress.png" id="2_a4lje"]
+[ext_resource type="Script" path="res://scripts/bar/energy_bar.gd" id="3_mee7c"]
+
+[node name="EnergyBar" type="TextureProgressBar"]
+texture_filter = 1
+offset_right = 64.0
+offset_bottom = 10.0
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("1_3w13x")
+texture_progress = ExtResource("2_a4lje")
+script = ExtResource("3_mee7c")

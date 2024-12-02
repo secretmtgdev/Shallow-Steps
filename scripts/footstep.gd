@@ -11,7 +11,7 @@ func set_alpha(alpha):
 	modulate.a = alpha
 
 func _ready() -> void:
-	point_light_2d.energy = GameManager.get_energy()
+	point_light_2d.energy = GameManager.get_energy_percentage()
 	if under_player:
 		animation_player.play("Pulsate")
 	else:

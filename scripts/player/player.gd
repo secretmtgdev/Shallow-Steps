@@ -1,24 +1,36 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
-class_name Player
+
+@export var energy_bar: Bar
+@export var health_bar: Bar
 
 @onready var previous_step: Marker2D = $PreviousStep
-@onready var footstep: Node2D = $Footstep
+@onready var player_ui: Node2D = $PlayerUI
+
+@onready var footstep: Footstep = $PlayerUI/Footstep
 
 const SPEED = 150.0
+var current_health = 100.0
 var direction = Utils.DirectionalFace.NORTH
 var can_add_footprint = false
 var is_light_on = false
 
 func _ready() -> void:
-	GameManager.ENERGY = 100.0
+	GameManager.set_difficulty(GameManager.GameDifficulty.HARD)
+	GameManager.set_energy(100.0)
+	energy_bar.set_progress(GameManager.ENERGY)
 
 func _physics_process(_delta: float) -> void:
+	handle_game_over()
 	handle_illuminate()
 	handle_velocity()
 	move_and_slide()
 	if can_add_footprint and is_light_on:
 		add_footprint()
+
+func handle_game_over() -> void:
+	if GameManager.get_energy() <= 0:
+		SignalManager.game_over.emit()
 
 func handle_illuminate() -> void:
 	if Input.is_action_just_pressed("illuminate"):
@@ -27,8 +39,9 @@ func handle_illuminate() -> void:
 	if is_light_on:
 		footstep.show()
 		SignalManager.light_on.emit()
-		GameManager.ENERGY -= GameManager.ENERGY_DRAIN_RATE
-		modulate.a = GameManager.get_energy()
+		GameManager.decrease_energy()
+		player_ui.modulate.a = GameManager.get_energy_percentage()
+		energy_bar.set_progress(GameManager.get_energy())
 	else:
 		footstep.hide()
 		SignalManager.light_off.emit()
@@ -53,11 +66,12 @@ func handle_velocity() -> void:
 	else:
 		velocity = Vector2.ZERO
 			
-	#print("Character is facing: %s" % Utils.get_direction_string(direction))
-
 func add_footprint() -> void:
 	var footprint = GameManager.FOOTSTEP.instantiate()
 	footprint.position = previous_step.position
-	footprint.modulate.a = GameManager.get_energy()
+	footprint.modulate.a = GameManager.get_energy_percentage()
 	get_parent().add_child(footprint)
-	#print("Adding footprint at position: %v" % footprint.position)
+
+func take_damage(damageTaken: float) -> void:
+	current_health -= damageTaken
+	health_bar.set_progress(current_health)
