@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/worlds/world_1.gd" id="1_g4l0d"]
 [ext_resource type="PackedScene" uid="uid://0cfic8n36j0x" path="res://scenes/characters/player.tscn" id="1_pk70t"]
-[ext_resource type="PackedScene" uid="uid://b7spii7kjyjsb" path="res://scenes/objects/chest.tscn" id="3_2th3q"]
+[ext_resource type="PackedScene" uid="uid://cy3inx1v5m300" path="res://scenes/buttons/floor_button.tscn" id="2_f5ypt"]
 [ext_resource type="PackedScene" uid="uid://bfobfvwmdrosf" path="res://scenes/bars/health_bar.tscn" id="4_bwsyr"]
 [ext_resource type="PackedScene" uid="uid://dl28pdu2nrnvx" path="res://scenes/bars/energy_bar.tscn" id="4_e40ap"]
 
@@ -14,8 +14,8 @@ color = Color(0, 0, 0, 1)
 
 [node name="ObjectsContainer" type="Node2D" parent="."]
 
-[node name="Chest" parent="ObjectsContainer" instance=ExtResource("3_2th3q")]
-position = Vector2(392, 184)
+[node name="FloorButton" parent="ObjectsContainer" instance=ExtResource("2_f5ypt")]
+position = Vector2(320, 128)
 
 [node name="Visible" type="CanvasLayer" parent="."]
 

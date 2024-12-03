@@ -11,7 +11,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if can_open:
-		player_ref.take_damage(0.1)
 		if Input.is_action_just_pressed("interact"):
 			opened = true
 			can_open = false

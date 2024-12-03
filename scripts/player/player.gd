@@ -19,6 +19,7 @@ func _ready() -> void:
 	GameManager.set_difficulty(GameManager.GameDifficulty.HARD)
 	GameManager.set_energy(100.0)
 	energy_bar.set_progress(GameManager.ENERGY)
+	SignalManager.take_damage.connect(take_damage)
 
 func _physics_process(_delta: float) -> void:
 	handle_game_over()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5py3u7du0oxs"
-path="res://.godot/imported/InventoryRect.png-a9e932d13180a72da0c236135fbba976.ctex"
+uid="uid://df3toi5oebao4"
+path="res://.godot/imported/redButton.png-f63ee0dc7f7b6ade1a16c8e566a9b438.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/details/InventoryRect.png"
-dest_files=["res://.godot/imported/InventoryRect.png-a9e932d13180a72da0c236135fbba976.ctex"]
+source_file="res://art/buttons/redButton.png"
+dest_files=["res://.godot/imported/redButton.png-f63ee0dc7f7b6ade1a16c8e566a9b438.ctex"]
 
 [params]
 
