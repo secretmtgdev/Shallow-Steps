@@ -2,6 +2,9 @@
 ## Description
 Shallow Steps is a game where the player has to find all the clues in a room in order to advance to the next one. But beware, time is of the essence!
 
+## Progress videos
+- [Button QTE](https://youtu.be/a54x6_c5eMQ)
+
 ## Todo
 - Create a start menu (Game entrypoint)
 	- Button to start a new game

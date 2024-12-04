@@ -14,8 +14,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="ObjectsContainer" type="Node2D" parent="."]
 
-[node name="FloorButton" parent="ObjectsContainer" instance=ExtResource("2_f5ypt")]
+[node name="FloorButton" parent="ObjectsContainer" node_paths=PackedStringArray("visible_layer") instance=ExtResource("2_f5ypt")]
 position = Vector2(320, 128)
+visible_layer = NodePath("../../Visible")
 
 [node name="Visible" type="CanvasLayer" parent="."]
 

@@ -14,15 +14,20 @@ var current_health = 100.0
 var direction = Utils.DirectionalFace.NORTH
 var can_add_footprint = false
 var is_light_on = false
+var is_busy = false
 
 func _ready() -> void:
 	GameManager.set_difficulty(GameManager.GameDifficulty.HARD)
 	GameManager.set_energy(100.0)
 	energy_bar.set_progress(GameManager.ENERGY)
 	SignalManager.take_damage.connect(take_damage)
+	SignalManager.fail_qte.connect(handle_fail_qte)
+	SignalManager.pass_qte.connect(handle_pass_qte)
 
 func _physics_process(_delta: float) -> void:
 	handle_game_over()
+	if is_busy:
+		return
 	handle_illuminate()
 	handle_velocity()
 	move_and_slide()
@@ -76,3 +81,13 @@ func add_footprint() -> void:
 func take_damage(damageTaken: float) -> void:
 	current_health -= damageTaken
 	health_bar.set_progress(current_health)
+
+func set_is_busy(busyState) -> void:
+	is_busy = busyState
+
+func handle_fail_qte(damageTaken: float) -> void:
+	set_is_busy(false)
+	take_damage(damageTaken)
+
+func handle_pass_qte() -> void:
+	set_is_busy(false)

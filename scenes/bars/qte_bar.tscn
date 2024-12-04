@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpwdmcklo85yv"]
+
+[ext_resource type="Script" path="res://scripts/bar/qte_bar.gd" id="1_d7sjg"]
+[ext_resource type="Texture2D" uid="uid://drpg58yt5ooxg" path="res://art/bars/healthbarUnder.png" id="2_dx12d"]
+[ext_resource type="Texture2D" uid="uid://dqpdqwwrtnoph" path="res://art/bars/barOverTarget.png" id="3_8wwov"]
+[ext_resource type="Texture2D" uid="uid://xjjgjdsayh0w" path="res://art/bars/greenBarProgress.png" id="4_dq6c8"]
+
+[node name="QTEBar" type="Node2D"]
+script = ExtResource("1_d7sjg")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_right = 64.0
+offset_bottom = 10.0
+rotation = 1.5708
+value = 10.0
+fill_mode = 1
+texture_under = ExtResource("2_dx12d")
+texture_over = ExtResource("3_8wwov")
+texture_progress = ExtResource("4_dq6c8")
+
+[node name="ResponseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="ResponseTimer" to="." method="_on_response_timer_timeout"]
