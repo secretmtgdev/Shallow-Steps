@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://d17q24y4od8i7"]
+
+[ext_resource type="Script" path="res://scripts/objects/die_roller.gd" id="1_0vtcl"]
+[ext_resource type="Texture2D" uid="uid://cvx356nnfdbue" path="res://art/dice/generic_die_container.png" id="2_sxswk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lrp3w"]
+font_size = 32
+
+[node name="DieRoller" type="Panel"]
+script = ExtResource("1_0vtcl")
+
+[node name="CurrentNumberLabel" type="Label" parent="."]
+offset_right = 48.0
+offset_bottom = 48.0
+text = "1"
+label_settings = SubResource("LabelSettings_lrp3w")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedNumberTimer" type="Timer" parent="."]
+
+[node name="DieContainer" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_sxswk")
+centered = false
+
+[connection signal="timeout" from="SelectedNumberTimer" to="." method="_on_selected_number_timer_timeout"]

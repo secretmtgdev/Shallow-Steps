@@ -19,7 +19,6 @@ func _process(_delta: float) -> void:
 	if player_ref and !buttonOff:
 		player_ref.take_damage(damage)
 		if interactable and Input.is_action_just_pressed("interact"):
-			player_ref.set_is_busy(true)
 			press_button()
 			
 func press_button() -> void:
@@ -28,7 +27,13 @@ func press_button() -> void:
 	red_zone.hide()
 	buttonOff = true
 	interactable = false
-	add_qte_bar()
+	#add_qte_bar()
+	add_die_roller()
+	
+func add_die_roller() -> void:
+	var die_roller = GameManager.DIE_ROLLER.instantiate()
+	die_roller.global_position = position + Vector2(16, -64)
+	visible_layer.add_child(die_roller)
 	
 func add_qte_bar() -> void:
 	var qte_bar = GameManager.QTE_BAR.instantiate()

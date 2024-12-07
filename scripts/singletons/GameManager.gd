@@ -2,6 +2,7 @@ extends Node
 
 const FOOTSTEP = preload("res://scenes/characters/footstep.tscn")
 const QTE_BAR = preload("res://scenes/bars/qte_bar.tscn")
+const DIE_ROLLER = preload("res://scenes/objects/die_roller.tscn")
 
 enum GameDifficulty {
 	EASY,
