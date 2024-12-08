@@ -72,6 +72,7 @@ qte_default_action={
 2d_render/layer_1="Background"
 2d_render/layer_2="Hidden"
 2d_render/layer_3="Foreground"
+2d_physics/layer_1="Floor"
 
 [rendering]
 

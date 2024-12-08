@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://da3a5d8gj0xnx"]
+
+[ext_resource type="Script" path="res://scripts/objects/dice/DieHitQTE.gd" id="1_o4hnf"]
+[ext_resource type="PackedScene" uid="uid://d17q24y4od8i7" path="res://scenes/objects/dice/die_roller.tscn" id="2_4y6m8"]
+[ext_resource type="PackedScene" uid="uid://b4we5dae7srpk" path="res://scripts/objects/dice/die_player.tscn" id="3_d2ojy"]
+
+[node name="DieHitQTE" type="Node2D"]
+script = ExtResource("1_o4hnf")
+
+[node name="DieRoller" parent="." instance=ExtResource("2_4y6m8")]
+position = Vector2(232, 104)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 256)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(0, 0, 480, 0, 480, 16, 0, 16)
+
+[node name="DiePlayer" parent="." instance=ExtResource("3_d2ojy")]
+position = Vector2(256, 240)
+scale = Vector2(2, 2)
+collision_layer = 3
+collision_mask = 3
